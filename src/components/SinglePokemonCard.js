@@ -50,7 +50,7 @@ const SinglePokemonCard = ({ pokemon, handleCardClose }) => {
               <div className='pokecard__basic-info--image'>
                 <img
                   src={pokemon.sprites.front_default}
-                  alt={`${pokemon.name} image`}
+                  alt={`${pokemon.name}`}
                 />
               </div>
               <div className='pokecard__basic-info--info'>
