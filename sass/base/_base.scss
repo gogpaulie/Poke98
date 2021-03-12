@@ -1,0 +1,21 @@
+$ButtonLight: #dfdfdf;
+$ButtonShadow: #808080;
+$ButtonHighlight: #ffffff;
+$ButtonFace: #c0c0c0;
+$ButtonText: #000000;
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+.desktop {
+  &__folder-view {
+    padding: 1rem;
+    position: relative;
+    height: 100vh;
+  }
+}

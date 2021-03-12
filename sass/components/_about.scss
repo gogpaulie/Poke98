@@ -1,0 +1,49 @@
+.about {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: $ButtonFace;
+  border-color: $ButtonLight $ButtonShadow $ButtonShadow $ButtonLight;
+  border-style: solid;
+  border-width: 2px;
+
+  &__topbar {
+    height: 25px;
+    width: 100%;
+    background: linear-gradient(to right, blue 0%, #1084d0 100%);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    & p {
+      margin-left: 5px;
+    }
+
+    &--close {
+      background-color: $ButtonFace;
+      outline: none;
+      position: relative;
+      border-color: $ButtonLight $ButtonShadow $ButtonShadow $ButtonLight;
+      border-style: solid;
+      border-width: 2px;
+      margin: 2px 0px;
+      margin-left: 2px;
+      margin-right: 2px;
+      display: block;
+      width: 16px;
+      height: 14px;
+      padding: 0px;
+      &:active {
+        border-color: $ButtonShadow $ButtonLight $ButtonLight $ButtonShadow;
+      }
+    }
+  }
+  &__info {
+    padding: 20px;
+
+    & p:not(:last-child) {
+      margin-bottom: 20px;
+    }
+  }
+}

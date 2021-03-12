@@ -1,0 +1,92 @@
+$ButtonLight: #dfdfdf;
+$ButtonShadow: #808080;
+$ButtonHighlight: #ffffff;
+$ButtonFace: #c0c0c0;
+$ButtonText: #000000;
+
+.taskbar {
+  outline: 1px solid $ButtonLight;
+  background-color: #c0c0c0;
+  border-top: 1px solid $ButtonHighlight;
+  height: 30px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &__start-btn {
+    margin: 2px;
+    line-height: 14px;
+    padding: 2px 4px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-shrink: 0;
+    cursor: default;
+    user-select: none;
+    background-color: rgb(192, 192, 192);
+    color: rgb(0, 0, 0);
+    outline: none;
+    position: relative;
+    border-color: $ButtonLight $ButtonShadow $ButtonShadow $ButtonLight;
+    border-style: solid;
+    border-width: 2px;
+
+    &:active {
+      border-color: $ButtonShadow $ButtonLight $ButtonLight $ButtonShadow;
+    }
+
+    & img {
+      height: 14px;
+      width: 16px;
+    }
+  }
+
+  &__divider {
+    margin: 2px;
+    margin-right: 0px;
+    margin-left: 0px;
+    border-left: 1px solid $ButtonShadow;
+    border-right: 1px solid $ButtonHighlight;
+  }
+
+  &__tasks {
+    display: flex;
+    flex: 1 1 0%;
+    height: 100%;
+    min-width: 0px;
+    cursor: default;
+    user-select: none;
+  }
+
+  &__tray {
+    margin: 2px;
+    display: flex;
+    flex-direction: row;
+    line-height: 22px;
+    box-sizing: border-box;
+    vertical-align: middle;
+    border-style: solid;
+    border-width: 1px;
+    border-color: $ButtonShadow $ButtonHighlight $ButtonHighlight $ButtonShadow;
+    background-color: $ButtonFace;
+    color: $ButtonText;
+
+    &--icons {
+      display: flex;
+      align-items: center;
+      margin-left: 2px;
+    }
+
+    &--time {
+      cursor: default;
+      width: 80px;
+      text-align: center;
+      font-family: 'MS Sans Serif', 'Segoe UI', sans-serif;
+      font-size: 12px;
+    }
+  }
+}

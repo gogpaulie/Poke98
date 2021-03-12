@@ -1,0 +1,34 @@
+.searchbar {
+  width: 100%;
+  // position: absolute;
+  // top: 0;
+  background-color: $ButtonFace;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  border-bottom: 1px solid $ButtonShadow;
+
+  &__bottom-divider {
+    border-bottom: 1px solid $ButtonShadow;
+  }
+
+  &__top-divider {
+    border-top: 1px solid $ButtonHighlight;
+  }
+
+  &__form-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+
+    &--control {
+      outline: none;
+      height: 90%;
+      width: 100%;
+      padding: 10px;
+      border: 1px solid $ButtonHighlight $ButtonShadow $ButtonShadow
+        $ButtonHighlight inset;
+    }
+  }
+}

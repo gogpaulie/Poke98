@@ -1,38 +1,560 @@
-.App {
-  text-align: center;
-}
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit; }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
+.desktop__folder-view {
+  padding: 1rem;
+  position: relative;
+  height: 100vh; }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
+.taskbar {
+  outline: 1px solid #dfdfdf;
+  background-color: #c0c0c0;
+  border-top: 1px solid #ffffff;
+  height: 30px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center; }
+  .taskbar__start-btn {
+    margin: 2px;
+    line-height: 14px;
+    padding: 2px 4px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-shrink: 0;
+    cursor: default;
+    user-select: none;
+    background-color: silver;
+    color: black;
+    outline: none;
+    position: relative;
+    border-color: #dfdfdf #808080 #808080 #dfdfdf;
+    border-style: solid;
+    border-width: 2px;
+    image-rendering: pixelated; }
+    .taskbar__start-btn:active {
+      border-color: #808080 #dfdfdf #dfdfdf #808080; }
+    .taskbar__start-btn img {
+      height: 14px;
+      width: 16px; }
+  .taskbar__divider {
+    margin: 2px;
+    margin-right: 0px;
+    margin-left: 0px;
+    border-left: 1px solid #808080;
+    border-right: 1px solid #ffffff;
+    image-rendering: pixelated; }
+  .taskbar__tasks {
+    display: flex;
+    flex: 1 1 0%;
+    height: 100%;
+    min-width: 0px;
+    cursor: default;
+    user-select: none;
+    image-rendering: pixelated; }
+  .taskbar__tray {
+    margin: 2px;
+    display: flex;
+    flex-direction: row;
+    line-height: 22px;
+    box-sizing: border-box;
+    vertical-align: middle;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #808080 #ffffff #ffffff #808080;
+    background-color: #c0c0c0;
+    color: #000000;
+    image-rendering: pixelated; }
+    .taskbar__tray--icons {
+      display: flex;
+      align-items: center;
+      margin-left: 2px;
+      image-rendering: pixelated; }
+    .taskbar__tray--time {
+      cursor: default;
+      width: 80px;
+      text-align: center;
+      font-family: 'MS Sans Serif', 'Segoe UI', sans-serif;
+      font-size: 12px;
+      image-rendering: pixelated; }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.window-border {
+  border-color: #dfdfdf #808080 #808080 #dfdfdf;
+  border-style: solid;
+  border-width: 2px; }
+
+.icon {
+  margin: 5px;
+  width: 75px;
+  height: 75px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
+  vertical-align: bottom; }
+  .icon__image {
+    height: 32px;
+    width: 32px; }
+    .icon__image--pokemon {
+      height: 60px;
+      width: 60px; }
+  .icon__text {
+    font-size: 0.75rem;
+    width: 100%;
+    background-color: #238080;
+    color: white;
+    text-align: center;
+    cursor: default; }
+  .icon.highlighted p {
+    background-color: #000080;
+    border: 1px dotted white; }
+  .icon.highlighted img {
+    filter: hue-rotate(90deg); }
+
+.pokedex {
+  border-color: #dfdfdf #808080 #808080 #dfdfdf;
+  border-style: solid;
+  border-width: 2px;
+  width: 50%;
+  height: 50vh;
+  margin: auto auto;
+  background-color: white;
+  overflow-y: scroll;
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
+  align-items: flex-start;
+  flex-wrap: wrap;
+  position: relative;
+  transition: visibility 0.1s 0.3s ease; }
+  .pokedex__loading img {
+    height: 40px; }
+  .pokedex.minimized {
+    visibility: hidden; }
+  .pokedex.maximized {
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top: 25px;
+    left: 0; }
 
-.App-link {
-  color: #61dafb;
-}
+.window-top-bar {
+  background: linear-gradient(to right, blue 0%, #1084d0 100%);
+  width: 50%;
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin: auto;
+  border-color: #dfdfdf #808080 #808080 #dfdfdf;
+  border-style: solid;
+  border-width: 2px;
+  transition: all 0.3s ease; }
+  .window-top-bar.maximized {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0; }
+  .window-top-bar__iconName {
+    cursor: default;
+    display: flex;
+    align-items: center;
+    color: white; }
+    .window-top-bar__iconName img {
+      height: 16px;
+      width: 16px; }
+  .window-top-bar__buttons {
+    display: flex;
+    align-items: center; }
+    .window-top-bar__buttons--close {
+      background-color: #c0c0c0;
+      color: var(--ButtonText);
+      outline: none;
+      position: relative;
+      border-color: #dfdfdf #808080 #808080 #dfdfdf;
+      border-style: solid;
+      border-width: 2px;
+      border-image: url("data:image/svg+xml,%3Csvg%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22256px%22%20height%3D%22256px%22%20viewBox%3D%220%200%20256%20256%22%3E%0A%09%09%09%0A%09%09%3Cpath%20d%3D%22M0%200h256v256h-256v-256z%22%20fill%3D%22%20rgb(0%2C%200%2C%200)%22%2F%3E%0A%09%09%3Cpath%20d%3D%22M32%2032h192v192h-192v-192z%22%20fill%3D%22%20rgb(128%2C%20128%2C%20128)%22%2F%3E%0A%09%09%3Cpath%20d%3D%22M64%2064h128v128h-128v-128z%22%20fill%3D%22%20rgb(192%2C%20192%2C%20192)%22%2F%3E%0A%09%0A%09%09%3C%2Fsvg%3E%22%2F%3E%0A%09%09%3Cpath%20d%3D%22M32%2032h192v192h-192v-192z%22%20fill%3D%22%20rgb(128%2C%20128%2C%20128)%22%2F%3E%0A%09%09%3Cpath%20d%3D%22M64%2064h128v128h-128v-128z%22%20fill%3D%22%20rgb(192%2C%20192%2C%20192)%22%2F%3E%0A%09%0A%09%09%3C%2Fsvg%3E") 64/2px;
+      margin: 2px 0px;
+      margin-left: 2px;
+      margin-right: 2px;
+      image-rendering: pixelated;
+      display: block;
+      width: 16px;
+      height: 14px;
+      padding: 0px; }
+      .window-top-bar__buttons--close:active {
+        border-color: #808080 #dfdfdf #dfdfdf #808080; }
+    .window-top-bar__buttons--maximize {
+      background-color: #c0c0c0;
+      color: var(--ButtonText);
+      outline: none;
+      position: relative;
+      border-color: #dfdfdf #808080 #808080 #dfdfdf;
+      border-style: solid;
+      border-width: 2px;
+      border-image: url("data:image/svg+xml,%3Csvg%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22256px%22%20height%3D%22256px%22%20viewBox%3D%220%200%20256%20256%22%3E%0A%09%09%09%0A%09%09%3Cpath%20d%3D%22M0%200h256v256h-256v-256z%22%20fill%3D%22%20rgb(0%2C%200%2C%200)%22%2F%3E%0A%09%09%3Cpath%20d%3D%22M32%2032h192v192h-192v-192z%22%20fill%3D%22%20rgb(128%2C%20128%2C%20128)%22%2F%3E%0A%09%09%3Cpath%20d%3D%22M64%2064h128v128h-128v-128z%22%20fill%3D%22%20rgb(192%2C%20192%2C%20192)%22%2F%3E%0A%09%0A%09%09%3C%2Fsvg%3E%22%2F%3E%0A%09%09%3Cpath%20d%3D%22M32%2032h192v192h-192v-192z%22%20fill%3D%22%20rgb(128%2C%20128%2C%20128)%22%2F%3E%0A%09%09%3Cpath%20d%3D%22M64%2064h128v128h-128v-128z%22%20fill%3D%22%20rgb(192%2C%20192%2C%20192)%22%2F%3E%0A%09%0A%09%09%3C%2Fsvg%3E") 64/2px;
+      margin: 2px 0px;
+      margin-left: 2px;
+      margin-right: 2px;
+      image-rendering: pixelated;
+      display: block;
+      width: 16px;
+      height: 14px;
+      padding: 0px; }
+      .window-top-bar__buttons--maximize:active {
+        border-color: #808080 #dfdfdf #dfdfdf #808080; }
+    .window-top-bar__buttons--minimize {
+      background-color: #c0c0c0;
+      color: var(--ButtonText);
+      outline: none;
+      position: relative;
+      border-color: #dfdfdf #808080 #808080 #dfdfdf;
+      border-style: solid;
+      border-width: 2px;
+      border-image: url("data:image/svg+xml,%3Csvg%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22256px%22%20height%3D%22256px%22%20viewBox%3D%220%200%20256%20256%22%3E%0A%09%09%09%0A%09%09%3Cpath%20d%3D%22M0%200h256v256h-256v-256z%22%20fill%3D%22%20rgb(0%2C%200%2C%200)%22%2F%3E%0A%09%09%3Cpath%20d%3D%22M32%2032h192v192h-192v-192z%22%20fill%3D%22%20rgb(128%2C%20128%2C%20128)%22%2F%3E%0A%09%09%3Cpath%20d%3D%22M64%2064h128v128h-128v-128z%22%20fill%3D%22%20rgb(192%2C%20192%2C%20192)%22%2F%3E%0A%09%0A%09%09%3C%2Fsvg%3E%22%2F%3E%0A%09%09%3Cpath%20d%3D%22M32%2032h192v192h-192v-192z%22%20fill%3D%22%20rgb(128%2C%20128%2C%20128)%22%2F%3E%0A%09%09%3Cpath%20d%3D%22M64%2064h128v128h-128v-128z%22%20fill%3D%22%20rgb(192%2C%20192%2C%20192)%22%2F%3E%0A%09%0A%09%09%3C%2Fsvg%3E") 64/2px;
+      margin: 2px 0px;
+      margin-left: 2px;
+      margin-right: 2px;
+      image-rendering: pixelated;
+      display: block;
+      width: 16px;
+      height: 14px;
+      padding: 0px; }
+      .window-top-bar__buttons--minimize:active {
+        border-color: #808080 #dfdfdf #dfdfdf #808080; }
+      .window-top-bar__buttons--minimize p {
+        transform: translateY(-10px);
+        font-weight: bold;
+        font-size: 1.3rem; }
+  .window-top-bar.minimized {
+    width: 25%;
+    transform: translate(-400px, 1100px);
+    opacity: 0; }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+.pokecard {
+  border-color: #dfdfdf #808080 #808080 #dfdfdf;
+  border-style: solid;
+  border-width: 2px;
+  background-color: #dfdfdf;
+  height: 425px;
+  width: 600px;
+  position: fixed;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10; }
+  .pokecard__loading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 30px;
+    height: 30px; }
+  .pokecard__tabs {
+    height: 280px; }
+  .pokecard__file-btns button {
+    border-style: solid;
+    border-width: 2px;
+    border-color: transparent;
+    margin: 10px 5px;
+    padding: 2px 4px;
+    background-color: transparent; }
+  .pokecard__file-btns--exit:hover {
+    border-style: solid;
+    border-width: 2px;
+    border-color: #ffffff #808080 #808080 #ffffff; }
+  .pokecard__file-btns--exit:active {
+    border-color: #808080 #ffffff #ffffff #808080;
+    outline: none; }
+  .pokecard__basic-info {
+    display: flex;
+    height: 100%; }
+    .pokecard__basic-info--image {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 35%;
+      height: 100%; }
+      .pokecard__basic-info--image img {
+        height: 200px;
+        width: 200px; }
+    .pokecard__basic-info--info {
+      display: flex;
+      flex-direction: column;
+      flex: 1; }
+      .pokecard__basic-info--info--title {
+        text-transform: capitalize; }
+      .pokecard__basic-info--info--types {
+        display: flex;
+        margin: 1rem 0; }
+        .pokecard__basic-info--info--types p {
+          margin-right: 1rem;
+          padding: 5px 10px;
+          text-transform: capitalize; }
+      .pokecard__basic-info--info--size {
+        display: flex; }
+        .pokecard__basic-info--info--size p {
+          margin-right: 1rem; }
+      .pokecard__basic-info--info--flavor {
+        margin-top: 1rem; }
+  .pokecard__stats {
+    position: absolute;
+    top: 120px;
+    width: 100%; }
+    .pokecard__stats--container {
+      box-sizing: border-box;
+      margin: -10px 5px 0px 5px;
+      background: #c6c6c6;
+      color: #0a0a0a;
+      border-style: solid;
+      border-width: 2px;
+      border-color: #fefefe #0a0a0a #0a0a0a #fefefe;
+      box-shadow: #dfdfdf 1px 1px 0px 1px inset, #848584 -1px -1px 0px 1px inset;
+      position: relative;
+      display: block;
+      height: 100%;
+      padding: 16px;
+      font-size: 1rem; }
+    .pokecard__stats--table {
+      display: table;
+      width: 100%;
+      border-style: solid;
+      border-width: 2px;
+      border-color: #848584 #fefefe #fefefe #848584; }
+      .pokecard__stats--table__head {
+        display: table-header-group; }
+        .pokecard__stats--table__head--row {
+          display: table-row;
+          height: calc(33px);
+          line-height: calc(33px);
+          vertical-align: middle; }
+      .pokecard__stats--table__header {
+        position: relative;
+        padding: 0px 8px;
+        display: table-cell;
+        vertical-align: inherit;
+        background: #c6c6c6;
+        cursor: default;
+        user-select: none;
+        color: #0a0a0a;
+        box-shadow: #dfdfdf 1px 1px 0px 1px inset, #848584 -1px -1px 0px 1px inset;
+        margin: 0px;
+        border-style: solid;
+        border-width: 2px;
+        border-color: #ffffff #808080 #808080 #ffffff;
+        font: inherit; }
+      .pokecard__stats--table__body {
+        background: white;
+        display: table-row-group; }
+        .pokecard__stats--table__body--row {
+          cursor: default;
+          display: table-row;
+          height: calc(33px);
+          line-height: calc(33px);
+          vertical-align: middle; }
+          .pokecard__stats--table__body--row:hover {
+            background: #060084;
+            color: #fefefe; }
+        .pokecard__stats--table__body--cell {
+          padding: 0px 8px; }
+
+.card-top-bar {
+  background: linear-gradient(to right, blue 0%, #1084d0 100%);
+  width: 100%;
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin: auto; }
+  .card-top-bar__iconName {
+    cursor: default;
+    display: flex;
+    align-items: center;
+    color: white; }
+    .card-top-bar__iconName img {
+      height: 30px;
+      width: 30px; }
+  .card-top-bar__buttons {
+    display: flex;
+    align-items: center;
+    margin-right: 2px; }
+    .card-top-bar__buttons--close {
+      background-color: #c0c0c0;
+      color: var(--ButtonText);
+      outline: none;
+      position: relative;
+      border-color: #dfdfdf #808080 #808080 #dfdfdf;
+      border-style: solid;
+      border-width: 2px;
+      border-image: url("data:image/svg+xml,%3Csvg%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22256px%22%20height%3D%22256px%22%20viewBox%3D%220%200%20256%20256%22%3E%0A%09%09%09%0A%09%09%3Cpath%20d%3D%22M0%200h256v256h-256v-256z%22%20fill%3D%22%20rgb(0%2C%200%2C%200)%22%2F%3E%0A%09%09%3Cpath%20d%3D%22M32%2032h192v192h-192v-192z%22%20fill%3D%22%20rgb(128%2C%20128%2C%20128)%22%2F%3E%0A%09%09%3Cpath%20d%3D%22M64%2064h128v128h-128v-128z%22%20fill%3D%22%20rgb(192%2C%20192%2C%20192)%22%2F%3E%0A%09%0A%09%09%3C%2Fsvg%3E%22%2F%3E%0A%09%09%3Cpath%20d%3D%22M32%2032h192v192h-192v-192z%22%20fill%3D%22%20rgb(128%2C%20128%2C%20128)%22%2F%3E%0A%09%09%3Cpath%20d%3D%22M64%2064h128v128h-128v-128z%22%20fill%3D%22%20rgb(192%2C%20192%2C%20192)%22%2F%3E%0A%09%0A%09%09%3C%2Fsvg%3E") 64/2px;
+      margin: 2px 0px;
+      margin-left: 2px;
+      margin-right: 2px;
+      image-rendering: pixelated;
+      display: block;
+      width: 16px;
+      height: 14px;
+      padding: 0px; }
+      .card-top-bar__buttons--close:active:active {
+        border-color: #808080 #dfdfdf #dfdfdf #808080; }
+
+.task {
+  width: 200px;
+  margin: 0 3px; }
+  .task__btn {
+    background-color: #c0c0c0;
+    color: var(--ButtonText);
+    outline: none;
+    border-color: #dfdfdf #808080 #808080 #dfdfdf;
+    border-style: solid;
+    border-width: 2px;
+    margin: 2px 0px;
+    margin-left: 2px;
+    margin-right: 2px;
+    image-rendering: pixelated;
+    width: 100%;
+    height: 20px;
+    padding: 0px; }
+    .task__btn--content {
+      display: flex;
+      align-items: center; }
+      .task__btn--content:active {
+        border: 1px black dotted; }
+    .task__btn img {
+      margin-left: 5px;
+      height: 14px;
+      width: 14px; }
+    .task__btn p {
+      margin-left: 10px; }
+    .task__btn:active {
+      border-color: #808080 #dfdfdf #dfdfdf #808080; }
+    .task__btn.active {
+      background-color: #ffffff;
+      border-color: #808080 #dfdfdf #dfdfdf #808080; }
+
+.startmenu {
+  height: 300px;
+  width: 200px;
+  background-color: #c0c0c0;
+  border-color: #dfdfdf #808080 #808080 #dfdfdf;
+  border-style: solid;
+  border-width: 2px;
+  position: absolute;
+  bottom: 30px;
+  left: 2px;
+  display: grid;
+  grid-template-columns: 12% 1fr;
+  grid-template-rows: repeat(6, 1fr); }
+  .startmenu__side {
+    grid-row: 1 / 7;
+    width: 100%;
+    background: linear-gradient(to top, blue 0%, #104dd0 100%);
+    color: white;
+    display: flex;
+    align-items: flex-end; }
+    .startmenu__side p {
+      transform: rotate(-90deg) translate(25px, -16px);
+      font-weight: bold; }
+  .startmenu__btn {
+    background-color: #c0c0c0;
+    border: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px; }
+    .startmenu__btn i {
+      transform: rotate(90deg); }
+    .startmenu__btn:hover {
+      background-color: blue;
+      color: white; }
+
+.programsMenu {
+  position: absolute;
+  top: 0;
+  left: 195px; }
+  .programsMenu__btn {
+    background-color: #c0c0c0;
+    border-color: #dfdfdf #808080 #808080 #dfdfdf;
+    border-style: solid;
+    border-width: 2px;
+    padding: 10px;
+    width: 100%;
+    display: flex;
+    align-items: center; }
+    .programsMenu__btn img {
+      height: 20px;
+      width: 20px; }
+    .programsMenu__btn:hover {
+      background-color: blue;
+      color: white; }
+
+.about {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #c0c0c0;
+  border-color: #dfdfdf #808080 #808080 #dfdfdf;
+  border-style: solid;
+  border-width: 2px; }
+  .about__topbar {
+    height: 25px;
+    width: 100%;
+    background: linear-gradient(to right, blue 0%, #1084d0 100%);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; }
+    .about__topbar p {
+      margin-left: 5px; }
+    .about__topbar--close {
+      background-color: #c0c0c0;
+      outline: none;
+      position: relative;
+      border-color: #dfdfdf #808080 #808080 #dfdfdf;
+      border-style: solid;
+      border-width: 2px;
+      border-image: url("data:image/svg+xml,%3Csvg%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22256px%22%20height%3D%22256px%22%20viewBox%3D%220%200%20256%20256%22%3E%0A%09%09%09%0A%09%09%3Cpath%20d%3D%22M0%200h256v256h-256v-256z%22%20fill%3D%22%20rgb(0%2C%200%2C%200)%22%2F%3E%0A%09%09%3Cpath%20d%3D%22M32%2032h192v192h-192v-192z%22%20fill%3D%22%20rgb(128%2C%20128%2C%20128)%22%2F%3E%0A%09%09%3Cpath%20d%3D%22M64%2064h128v128h-128v-128z%22%20fill%3D%22%20rgb(192%2C%20192%2C%20192)%22%2F%3E%0A%09%0A%09%09%3C%2Fsvg%3E%22%2F%3E%0A%09%09%3Cpath%20d%3D%22M32%2032h192v192h-192v-192z%22%20fill%3D%22%20rgb(128%2C%20128%2C%20128)%22%2F%3E%0A%09%09%3Cpath%20d%3D%22M64%2064h128v128h-128v-128z%22%20fill%3D%22%20rgb(192%2C%20192%2C%20192)%22%2F%3E%0A%09%0A%09%09%3C%2Fsvg%3E") 64/2px;
+      margin: 2px 0px;
+      margin-left: 2px;
+      margin-right: 2px;
+      image-rendering: pixelated;
+      display: block;
+      width: 16px;
+      height: 14px;
+      padding: 0px; }
+      .about__topbar--close:active {
+        border-color: #808080 #dfdfdf #dfdfdf #808080; }
+  .about__info {
+    padding: 20px; }
+    .about__info p:not(:last-child) {
+      margin-bottom: 20px; }
+
+.searchbar {
+  width: 100%;
+  background-color: #c0c0c0;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  border-bottom: 1px solid #808080; }
+  .searchbar__bottom-divider {
+    border-bottom: 1px solid #808080; }
+  .searchbar__top-divider {
+    border-top: 1px solid #ffffff; }
+  .searchbar__form-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px; }
+    .searchbar__form-group--control {
+      outline: none;
+      height: 90%;
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ffffff #808080 #808080 #ffffff inset; }

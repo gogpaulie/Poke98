@@ -1,0 +1,104 @@
+.window-top-bar {
+  background: linear-gradient(to right, blue 0%, #1084d0 100%);
+  width: 50%;
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin: auto;
+  border-color: $ButtonLight $ButtonShadow $ButtonShadow $ButtonLight;
+  border-style: solid;
+  border-width: 2px;
+  transition: all 0.3s ease;
+
+  &.maximized {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  &__iconName {
+    cursor: default;
+    display: flex;
+    align-items: center;
+    color: white;
+    & img {
+      height: 16px;
+      width: 16px;
+    }
+  }
+  &__buttons {
+    display: flex;
+    align-items: center;
+    &--close {
+      background-color: $ButtonFace;
+      color: var(--ButtonText);
+      outline: none;
+      position: relative;
+      border-color: $ButtonLight $ButtonShadow $ButtonShadow $ButtonLight;
+      border-style: solid;
+      border-width: 2px;
+      margin: 2px 0px;
+      margin-left: 2px;
+      margin-right: 2px;
+
+      display: block;
+      width: 16px;
+      height: 14px;
+      padding: 0px;
+      &:active {
+        border-color: $ButtonShadow $ButtonLight $ButtonLight $ButtonShadow;
+      }
+    }
+    &--maximize {
+      background-color: $ButtonFace;
+      color: var(--ButtonText);
+      outline: none;
+      position: relative;
+      border-color: $ButtonLight $ButtonShadow $ButtonShadow $ButtonLight;
+      border-style: solid;
+      border-width: 2px;
+      margin: 2px 0px;
+      margin-left: 2px;
+      margin-right: 2px;
+
+      display: block;
+      width: 16px;
+      height: 14px;
+      padding: 0px;
+      &:active {
+        border-color: $ButtonShadow $ButtonLight $ButtonLight $ButtonShadow;
+      }
+    }
+    &--minimize {
+      background-color: $ButtonFace;
+      color: var(--ButtonText);
+      outline: none;
+      position: relative;
+      border-color: $ButtonLight $ButtonShadow $ButtonShadow $ButtonLight;
+      border-style: solid;
+      border-width: 2px;
+      margin: 2px 0px;
+      margin-left: 2px;
+      margin-right: 2px;
+
+      display: block;
+      width: 16px;
+      height: 14px;
+      padding: 0px;
+      &:active {
+        border-color: $ButtonShadow $ButtonLight $ButtonLight $ButtonShadow;
+      }
+      & p {
+        transform: translateY(-10px);
+        font-weight: bold;
+        font-size: 1.3rem;
+      }
+    }
+  }
+  &.minimized {
+    width: 25%;
+    transform: translate(-400px, 1100px);
+    opacity: 0;
+  }
+}

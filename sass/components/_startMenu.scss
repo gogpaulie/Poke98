@@ -1,0 +1,71 @@
+.startmenu {
+  height: 300px;
+  width: 200px;
+  background-color: $ButtonFace;
+  border-color: $ButtonLight $ButtonShadow $ButtonShadow $ButtonLight;
+  border-style: solid;
+  border-width: 2px;
+  position: absolute;
+  bottom: 30px;
+  left: 2px;
+  display: grid;
+  grid-template-columns: 12% 1fr;
+  grid-template-rows: repeat(6, 1fr);
+
+  &__side {
+    grid-row: 1 / 7;
+    width: 100%;
+    background: linear-gradient(to top, blue 0%, #104dd0 100%);
+    color: white;
+    display: flex;
+    align-items: flex-end;
+
+    & p {
+      transform: rotate(-90deg) translate(25px, -16px);
+      font-weight: bold;
+    }
+  }
+
+  &__btn {
+    background-color: $ButtonFace;
+    border: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+
+    & i {
+      transform: rotate(90deg);
+    }
+
+    &:hover {
+      background-color: blue;
+      color: white;
+    }
+  }
+}
+
+.programsMenu {
+  position: absolute;
+  top: 0;
+  left: 195px;
+  &__btn {
+    background-color: $ButtonFace;
+    border-color: $ButtonLight $ButtonShadow $ButtonShadow $ButtonLight;
+    border-style: solid;
+    border-width: 2px;
+    padding: 10px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    & img {
+      height: 20px;
+      width: 20px;
+    }
+
+    &:hover {
+      background-color: blue;
+      color: white;
+    }
+  }
+}
