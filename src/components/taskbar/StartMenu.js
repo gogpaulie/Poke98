@@ -26,7 +26,16 @@ const StartMenu = ({ closeMenu, handleMenuClick, handleAboutOpen }) => {
         <button className='startmenu__btn' onClick={openAboutCloseMenu}>
           About
         </button>
-        <button className='startmenu__btn'>Visit Repo</button>
+
+        <a
+          className='startmenu__btn'
+          href='https://github.com/gogpaulie/Poke98'
+          target='_blank'
+          rel='noopener noreferrer'
+        >
+          Visit Repo
+        </a>
+
         {programsOpen && (
           <ProgramsMenu
             handleMenuClick={handleMenuClick}
