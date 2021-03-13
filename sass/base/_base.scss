@@ -4,6 +4,11 @@ $ButtonHighlight: #ffffff;
 $ButtonFace: #c0c0c0;
 $ButtonText: #000000;
 
+// BREAKPOINTS
+$ig-med-screen: 1200px !default;
+$ig-small-screen: 768px !default;
+$ig-xsmall-screen: 480px !default;
+
 *,
 *::after,
 *::before {
