@@ -54,7 +54,6 @@ const SinglePokemonCard = ({ pokemon, handleCardClose }) => {
                 />
               </div>
               <div className='pokecard__basic-info--info'>
-                {console.log(singlePokemon)}
                 <h2 className='pokecard__basic-info--info--title'>{`${pokemon.name} #${pokemon.id}`}</h2>
                 <div className='pokecard__basic-info--info--types'>
                   {pokemon.types.map((type, i) => (

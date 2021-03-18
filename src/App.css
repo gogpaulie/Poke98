@@ -130,7 +130,7 @@
   transition: visibility 0.1s 0.3s ease; }
   @media (max-width: 768px) {
     .pokedex {
-      width: 75%; } }
+      width: 85%; } }
   .pokedex__loading img {
     height: 40px; }
   .pokedex.minimized {
@@ -155,7 +155,7 @@
   transition: all 0.3s ease; }
   @media (max-width: 768px) {
     .window-top-bar {
-      width: 75%; } }
+      width: 85%; } }
   .window-top-bar.maximized {
     width: 100%;
     position: absolute;
@@ -244,6 +244,11 @@
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 10; }
+  @media (max-width: 768px) {
+    .pokecard {
+      width: 90vw;
+      font-size: 0.8rem;
+      transform: translate(-50%, -40%); } }
   .pokecard__loading {
     position: absolute;
     top: 50%;
@@ -270,15 +275,26 @@
   .pokecard__basic-info {
     display: flex;
     height: 100%; }
+    @media (max-width: 768px) {
+      .pokecard__basic-info {
+        flex-direction: column-reverse;
+        text-align: center; } }
     .pokecard__basic-info--image {
       display: flex;
       justify-content: center;
       align-items: center;
       width: 35%;
       height: 100%; }
+      @media (max-width: 768px) {
+        .pokecard__basic-info--image {
+          margin: 0 auto; } }
       .pokecard__basic-info--image img {
         height: 200px;
         width: 200px; }
+        @media (max-width: 768px) {
+          .pokecard__basic-info--image img {
+            height: 120px;
+            width: 120px; } }
     .pokecard__basic-info--info {
       display: flex;
       flex-direction: column;
@@ -288,16 +304,25 @@
       .pokecard__basic-info--info--types {
         display: flex;
         margin: 1rem 0; }
+        @media (max-width: 768px) {
+          .pokecard__basic-info--info--types {
+            justify-content: center; } }
         .pokecard__basic-info--info--types p {
           margin-right: 1rem;
           padding: 5px 10px;
           text-transform: capitalize; }
       .pokecard__basic-info--info--size {
         display: flex; }
+        @media (max-width: 768px) {
+          .pokecard__basic-info--info--size {
+            justify-content: center; } }
         .pokecard__basic-info--info--size p {
           margin-right: 1rem; }
       .pokecard__basic-info--info--flavor {
         margin-top: 1rem; }
+        @media (max-width: 768px) {
+          .pokecard__basic-info--info--flavor {
+            padding: 0 2rem; } }
   .pokecard__stats {
     position: absolute;
     top: 120px;
@@ -350,7 +375,8 @@
           display: table-row;
           height: calc(33px);
           line-height: calc(33px);
-          vertical-align: middle; }
+          vertical-align: middle;
+          text-transform: capitalize; }
           .pokecard__stats--table__body--row:hover {
             background: #060084;
             color: #fefefe; }
@@ -368,7 +394,8 @@
     cursor: default;
     display: flex;
     align-items: center;
-    color: white; }
+    color: white;
+    text-transform: capitalize; }
     .card-top-bar__iconName img {
       height: 30px;
       width: 30px; }
@@ -440,7 +467,8 @@
   left: 2px;
   display: grid;
   grid-template-columns: 12% 1fr;
-  grid-template-rows: repeat(6, 1fr); }
+  grid-template-rows: repeat(6, 1fr);
+  z-index: 10; }
   .startmenu__side {
     grid-row: 1 / 7;
     width: 100%;

@@ -11,6 +11,7 @@
   display: grid;
   grid-template-columns: 12% 1fr;
   grid-template-rows: repeat(6, 1fr);
+  z-index: 10;
 
   &__side {
     grid-row: 1 / 7;
