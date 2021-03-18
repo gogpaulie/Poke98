@@ -12,7 +12,12 @@ export async function getAllPokemon(url) {
 
 export async function getPokemon(url) {
   return new Promise((resolve, reject) => {
-    fetch(url)
+    fetch(url, {
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+    })
       .then((res) => res.json())
       .then((data) => {
         resolve(data);

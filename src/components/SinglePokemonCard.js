@@ -90,8 +90,8 @@ const SinglePokemonCard = ({ pokemon, handleCardClose }) => {
                     </tr>
                   </thead>
                   <tbody className='pokecard__stats--table__body'>
-                    {pokemon.stats.map((stat) => (
-                      <tr className='pokecard__stats--table__body--row'>
+                    {pokemon.stats.map((stat, i) => (
+                      <tr key={i} className='pokecard__stats--table__body--row'>
                         <td className='pokecard__stats--table__body--cell'>
                           {stat.stat.name}
                         </td>
@@ -115,16 +115,16 @@ const SinglePokemonCard = ({ pokemon, handleCardClose }) => {
                     </tr>
                   </thead>
                   <tbody className='pokecard__stats--table__body'>
-                    {pokemon.abilities.map((a) => (
-                      <tr className='pokecard__stats--table__body--row'>
+                    {pokemon.abilities.map((abil, i) => (
+                      <tr key={i} className='pokecard__stats--table__body--row'>
                         <td className='pokecard__stats--table__body--cell'>
-                          {a.ability.name}
+                          {abil.ability.name}
                         </td>
                         <td className='pokecard__stats--table__body--cell'>
-                          {a.slot}
+                          {abil.slot}
                         </td>
                         <td className='pokecard__stats--table__body--cell'>
-                          {a.is_hidden ? 'Yes' : 'No'}
+                          {abil.is_hidden ? 'Yes' : 'No'}
                         </td>
                       </tr>
                     ))}
